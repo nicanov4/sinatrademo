@@ -1,5 +1,17 @@
-<ol list-style-type: decimal;>
-  <% @cakes.each do |cake| %>
-     <li><%= cake %></a></li>
-  <% end %>
-</ol> 
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body></body>
+
+<script>
+var list = $('<ol>').appendTo('body');
+var url =  window.location.href;
+$(document).ready(function(e) {
+    $.getJSON(url+'/cakes.json', function(result){
+        $(result.cakes).each(function(index, cake){
+            list.append($(document.createElement('li')).text(cake));    
+        });
+    });
+});
+</script>
