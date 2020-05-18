@@ -1,0 +1,5 @@
+<ul>
+  <% @cakes.each do |cake| %>
+     <li><%= cake %></a></li>
+  <% end %>
+</ul> 
