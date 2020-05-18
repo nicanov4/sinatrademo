@@ -7,8 +7,5 @@ file.each_line do |line|
 end
 
 get '/' do
-  @i = 0
-  while @i < cakes.length
-    cakes.at(@i)
-  end
+  cakes
 end
