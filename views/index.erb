@@ -6,11 +6,10 @@
 
 <script>
 var list = $('<ol>').appendTo('body');
-var url =  window.location.href;
 $(document).ready(function(e) {
-    $.getJSON(url+'/cakes.json', function(result){
+    $.getJSON('/cakes.json', function(result){
         $(result.cakes).each(function(index, cake){
-            list.append($(document.createElement('li')).text(cake));    
+            list.append('<li>' + cake + '</li>');    
         });
     });
 });
