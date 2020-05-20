@@ -9,7 +9,7 @@ var list = $('<ol>').appendTo('body');
 $(document).ready(function(e) {
     $.getJSON('/cakes.json', function(result){
         $(result.cakes).each(function(index, cake){
-            list.append('<li>' + cake + '</li>');    
+            list.append('<li>' + cake.name + ' id: ' + cake.id  + '</li>');    
         });
     });
 });
