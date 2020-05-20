@@ -9,6 +9,7 @@ GEM
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
+    rake (13.0.1)
     ruby2_keywords (0.0.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
@@ -30,8 +31,12 @@ PLATFORMS
 DEPENDENCIES
   pg
   rack
+  rake
   sinatra
   sinatra-contrib
+
+RUBY VERSION
+   ruby 2.4.4p296
 
 BUNDLED WITH
    2.1.4

@@ -1,6 +1,7 @@
-ruby '2.6.6'
+ruby '2.4.4'
 source "https://rubygems.org"
 gem 'rack'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'pg'
+gem 'rake'
