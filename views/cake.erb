@@ -2,7 +2,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<body></body>
+<body>
+    <button id="delete_btn" type="button">Delete Cake</button>
+    <input type="text" id="new_cake_name">
+    <button id="update_btn" type="button">Update Cake Name</button>
+
+</body>
 
 <script>
 var id = <%= id %>;
@@ -11,6 +16,15 @@ $(document).ready(function(e) {
    $.getJSON(path + '/json', function(result) {
        $('body').append('This page is for cake: '+ result.name + ' with id: ' + id);
    });
+});
+
+$("#delete_btn").click(function() {
+    $.post(path + '/delete', {id: id});
+});
+
+$("#update_btn").click(function() {
+    var str = $("#new_cake_name").val();
+    $.post(path + '/edit', {id: id, name: str});
 });
 </script>
 
