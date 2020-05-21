@@ -1,6 +1,9 @@
 require 'sinatra'
 require 'sinatra/json'
 require 'pg'
+require 'active_record'
+require 'sinatra/activerecord'
+
 
 get'/' do
   erb :index
