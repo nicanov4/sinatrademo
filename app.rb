@@ -25,7 +25,7 @@ end
 get'/cakes.json' do
   #con = PG.connect :dbname => 'cakedb', :user => 'nico',
   #                 :password => 'password'
-  #con = PG.connect(ENV['DATABASE_URL'])
+  con = PG.connect(ENV['DATABASE_URL'])
   sql = "SELECT * FROM cakes"
   result = con.exec(sql)
   cakes = Array.new
