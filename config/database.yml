@@ -5,7 +5,7 @@ development:
   pool: 2
   username: nico
   password: password
-
+  host: ENV['DATABASE_URL']
 production:
   adapter: postgresql
   encoding: unicode
@@ -13,3 +13,4 @@ production:
   pool: 2
   username: nico
   password: password
+  host: ENV['DATABASE_URL']
