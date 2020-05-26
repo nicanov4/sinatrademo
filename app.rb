@@ -46,10 +46,14 @@ get'/cakes.json' do
   json :cakes => cakes
 end
 
+post'/addCake' do
+  new_cake_name = params[:name]
+  Cake.create(name: new_cake_name)
+end
+
 post'/cake/:id/delete' do
   id = params[:id]
   Cake.destroy(id)
-  redirect'.'
 end
 
 post'/cake/:id/edit' do
@@ -57,5 +61,4 @@ post'/cake/:id/edit' do
   new_cake_name = params[:name]
   cake = Cake.find_by(id: id)
   cake.update(name: new_cake_name)
-  redirect back
 end

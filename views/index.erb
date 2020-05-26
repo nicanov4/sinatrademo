@@ -1,7 +1,8 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
+<input type="text" id="new_cake_name">
+<button id="new_cake_btn" type="button">Add Cake</button>
 <body></body>
 
 <script>
@@ -12,5 +13,12 @@ $(document).ready(function(e) {
             list.append('<li><a href="/cake/'+ cake.id + '">' + cake.name + ' id: ' + cake.id  + '</a></li>');    
         });
     });
+});
+</script>
+
+<script>
+$("#new_cake_btn").click(function() {
+    var str = $("#new_cake_name").val();
+    $.post('/addCake', {name: str});
 });
 </script>
