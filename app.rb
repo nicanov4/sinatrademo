@@ -33,16 +33,12 @@ get'/cake/:id' do |id|
 end
                                                            
 get'/cake/:id/json' do |id|
-  cake = Cake.find_by(id: id)
+  cake = Cake.find(id)
   json cake
 end
 
 get'/cakes.json' do
-  result = Cake.all
-  cakes = Array.new
-  result.each do |row|
-    cakes.push(row)
-  end
+  cakes = Cake.all
   json :cakes => cakes
 end
 
@@ -51,14 +47,12 @@ post'/addCake' do
   Cake.create(name: new_cake_name)
 end
 
-post'/cake/:id/delete' do
-  id = params[:id]
+post'/cake/:id/delete' do |id|
   Cake.destroy(id)
 end
 
-post'/cake/:id/edit' do
-  id = params[:id]
+post'/cake/:id/edit' do |id|
   new_cake_name = params[:name]
-  cake = Cake.find_by(id: id)
+  cake = Cake.find(id)
   cake.update(name: new_cake_name)
 end

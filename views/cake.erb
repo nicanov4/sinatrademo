@@ -19,12 +19,14 @@ $(document).ready(function(e) {
 });
 
 $("#delete_btn").click(function() {
-    $.post(path + '/delete', {id: id});
+    $.post(path + '/delete');
+    window.location.href = "/";
 });
 
 $("#update_btn").click(function() {
     var str = $("#new_cake_name").val();
-    $.post(path + '/edit', {id: id, name: str});
+    $.post(path + '/edit', {name: str});
+    window.location.href = "/";
 });
 </script>
 
