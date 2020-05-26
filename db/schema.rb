@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_235132) do
+ActiveRecord::Schema.define(version: 2020_05_26_151433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cakes", id: :integer, default: nil, force: :cascade do |t|
-    t.string "name", limit: 50, null: false
+  create_table "cakes", force: :cascade do |t|
+    t.string "name"
   end
 
 end

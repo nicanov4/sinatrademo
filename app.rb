@@ -1,9 +1,28 @@
 require 'sinatra'
 require 'sinatra/json'
-require 'pg'
 require 'active_record'
 require 'sinatra/activerecord'
+require 'pg'
 
+class Cake < ActiveRecord::Base
+end
+
+#local database
+configure :development do
+  set :database, {adapter: 'postgresql',  encoding: 'unicode', database: 'cakedb', pool: 2, username: 'nico', password: 'password'}
+end
+
+configure :production do
+  set :database, {adapter: 'postgresql',  encoding: 'unicode', database: 'cakedb', pool: 2, username: 'nico', password: 'password'}
+end
+
+get'/DataReset' do
+  Cake.delete_all()
+  @cakes = File.open('cake.list', 'r')
+  @cakes.each_line do |line|
+    Cake.create(name: line)
+  end
+end
 
 get'/' do
   erb :index
@@ -14,20 +33,12 @@ get'/cake/:id' do |id|
 end
                                                            
 get'/cake/:id/json' do |id|
-  #con = PG.connect :dbname => 'cakedb', :user => 'nico',
-  #                 :password => 'password'
-  con = PG.connect(ENV['DATABASE_URL'])
-  sql = "SELECT name FROM cakes WHERE id=#{id}"
-  result = con.exec(sql)
-  json result[0]
+  cake = Cake.find_by(id: id)
+  json cake
 end
 
 get'/cakes.json' do
-  #con = PG.connect :dbname => 'cakedb', :user => 'nico',
-  #                 :password => 'password'
-  con = PG.connect(ENV['DATABASE_URL'])
-  sql = "SELECT * FROM cakes"
-  result = con.exec(sql)
+  result = Cake.all
   cakes = Array.new
   result.each do |row|
     cakes.push(row)
@@ -37,21 +48,14 @@ end
 
 post'/cake/:id/delete' do
   id = params[:id]
-  #con = PG.connect :dbname => 'cakedb', :user => 'nico',
-  #                 :password => 'password'
-  con = PG.connect(ENV['DATABASE_URL'])
-  sql = "DELETE FROM cakes WHERE id=#{id}"
-  con.exec(sql)
+  Cake.destroy(id)
   redirect'.'
 end
 
 post'/cake/:id/edit' do
   id = params[:id]
   new_cake_name = params[:name]
-  #con = PG.connect :dbname => 'cakedb', :user => 'nico',
-  #                 :password => 'password'
-  con = PG.connect(ENV['DATABASE_URL'])
-  sql = "UPDATE cakes SET name = '#{new_cake_name}' WHERE id  = #{id}"
-  con.exec(sql)
+  cake = Cake.find_by(id: id)
+  cake.update(name: new_cake_name)
   redirect back
 end
