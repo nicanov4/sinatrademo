@@ -1,11 +1,11 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<form action="" method="post" id="delete_form">
+<form action="" method="DELETE" id="delete_form">
     <button id="delete_btn" type="submit">Delete Cake</button>
 </form>
 
-<form action="" method="post" id="edit_form">
+<form action="" method="put" id="edit_form">
     <input type="text" id="new_cake_name" name="name">
     <button id="update_btn" type="submit">Update Cake Name</button>
 </form>
@@ -14,11 +14,12 @@
 
 
 <script>
+var url = window.location.href;
+
+document.getElementById('delete_form').action = url;
+document.getElementById('edit_form').action = url;
+
 var id = <%= id %>;
-
-document.getElementById('delete_form').action = id+"/delete";
-document.getElementById('edit_form').action = id+"/edit";
-
 var path = window.location.pathname;
 $(document).ready(function(e) {
    $.getJSON(path + '/json', function(result) {

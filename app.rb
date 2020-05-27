@@ -1,3 +1,4 @@
+
 require 'sinatra'
 require 'sinatra/json'
 require 'active_record'
@@ -24,15 +25,15 @@ get'/DataReset' do
   end
 end
 
-get'/' do
+get'/cakes' do
   erb :index
 end
 
-get'/cake/:id' do |id|
+get'/cakes/:id' do |id|
   erb :cake, :locals => {:id => id}
 end
                                                            
-get'/cake/:id/json' do |id|
+get'/cakes/:id/json' do |id|
   cake = Cake.find(id)
   json cake
 end
@@ -42,20 +43,20 @@ get'/cakes.json' do
   json :cakes => cakes
 end
 
-post'/addCake' do
+post'/cakes' do
   new_cake_name = params[:name]
   Cake.create(name: new_cake_name)
-  redirect'/'
+  redirect'/cakes'
 end
 
-post'/cake/:id/delete' do |id|
+delete'/cakes/:id' do |id|
   Cake.destroy(id)
-  redirect'/'
+  redirect'/cakes'
 end
 
-post'/cake/:id/edit' do |id|
+put '/cakes/:id' do |id|
   new_cake_name = params[:name]
   cake = Cake.find(id)
   cake.update(name: new_cake_name)
-  redirect'/'
+  redirect'/cakes'
 end

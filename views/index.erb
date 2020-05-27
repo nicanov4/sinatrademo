@@ -1,7 +1,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<form action="addCake" method="post">
+<form action="/cakes" method="post">
     <input type="text" id="new_cake_name" name="name">
     <button id="new_cake_btn" type="submit">Add Cake</button>
 </form>
@@ -12,7 +12,7 @@ var list = $('<ol>').appendTo('body');
 $(document).ready(function(e) {
     $.getJSON('/cakes.json', function(result){
         $(result.cakes).each(function(index, cake){
-            list.append('<li><a href="/cake/'+ cake.id + '">' + cake.name + ' id: ' + cake.id  + '</a></li>');    
+            list.append('<li><a href="/cakes/'+ cake.id + '">' + cake.name + ' id: ' + cake.id  + '</a></li>');    
         });
     });
 });
