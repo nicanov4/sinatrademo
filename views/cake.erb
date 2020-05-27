@@ -1,36 +1,29 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
-<body>
-<form action="delete" method="post">
+<form action="" method="post" id="delete_form">
     <button id="delete_btn" type="submit">Delete Cake</button>
 </form>
 
-<form action="edit" method="post">
+<form action="" method="post" id="edit_form">
     <input type="text" id="new_cake_name" name="name">
     <button id="update_btn" type="submit">Update Cake Name</button>
 </form>
 </body>
 
+
+
 <script>
 var id = <%= id %>;
+
+document.getElementById('delete_form').action = id+"/delete";
+document.getElementById('edit_form').action = id+"/edit";
+
 var path = window.location.pathname;
 $(document).ready(function(e) {
    $.getJSON(path + '/json', function(result) {
        $('body').append('This page is for cake: '+ result.name + ' with id: ' + id);
    });
 });
-
-//$("#delete_btn").click(function() {
-  //  $.post(path + '/delete');
-    //window.location.href = "/";
-//});
-
-//$("#update_btn").click(function() {
-  //  var str = $("#new_cake_name").val();
-    //$.post(path + '/edit', {name: str});
-    //window.location.href = "/";
-//});
 </script>
 

@@ -45,14 +45,17 @@ end
 post'/addCake' do
   new_cake_name = params[:name]
   Cake.create(name: new_cake_name)
+  redirect'/'
 end
 
 post'/cake/:id/delete' do |id|
   Cake.destroy(id)
+  redirect'/'
 end
 
 post'/cake/:id/edit' do |id|
   new_cake_name = params[:name]
   cake = Cake.find(id)
   cake.update(name: new_cake_name)
+  redirect'/'
 end
