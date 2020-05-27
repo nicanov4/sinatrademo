@@ -3,10 +3,14 @@
 </head>
 
 <body>
-    <button id="delete_btn" type="button">Delete Cake</button>
-    <input type="text" id="new_cake_name">
-    <button id="update_btn" type="button">Update Cake Name</button>
+<form action="delete" method="post">
+    <button id="delete_btn" type="submit">Delete Cake</button>
+</form>
 
+<form action="edit" method="post">
+    <input type="text" id="new_cake_name" name="name">
+    <button id="update_btn" type="submit">Update Cake Name</button>
+</form>
 </body>
 
 <script>
@@ -18,15 +22,15 @@ $(document).ready(function(e) {
    });
 });
 
-$("#delete_btn").click(function() {
-    $.post(path + '/delete');
-    window.location.href = "/";
-});
+//$("#delete_btn").click(function() {
+  //  $.post(path + '/delete');
+    //window.location.href = "/";
+//});
 
-$("#update_btn").click(function() {
-    var str = $("#new_cake_name").val();
-    $.post(path + '/edit', {name: str});
-    window.location.href = "/";
-});
+//$("#update_btn").click(function() {
+  //  var str = $("#new_cake_name").val();
+    //$.post(path + '/edit', {name: str});
+    //window.location.href = "/";
+//});
 </script>
 
