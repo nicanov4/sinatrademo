@@ -1,8 +1,10 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<input type="text" id="new_cake_name">
-<button id="new_cake_btn" type="button">Add Cake</button>
+<form action="addCake" method="post">
+    <input type="text" id="new_cake_name" name="name">
+    <button id="new_cake_btn" type="submit">Add Cake</button>
+</form>
 <body></body>
 
 <script>
@@ -16,10 +18,10 @@ $(document).ready(function(e) {
 });
 </script>
 
-<script>
-$("#new_cake_btn").click(function() {
-    var str = $("#new_cake_name").val();
-    $.post('/addCake', {name: str});
-    window.location.href = "/";
-});
-</script>
+//<script>
+//$("#new_cake_btn").click(function() {
+  //  var str = $("#new_cake_name").val();
+   // $.post('/addCake', {name: str});
+    //window.location.href = "/";
+//});
+//</script>
